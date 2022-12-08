@@ -7,7 +7,12 @@ import { isLoggedIn } from "./store/queries";
 const App = () => {
   const isUserLoggedIn = useSelector(isLoggedIn);
 
-  return <div className="App"> {isUserLoggedIn ? <Home /> : <Login />}</div>;
+  return (
+    <div className="App">
+      <Home />
+      {!isUserLoggedIn && <Login />}
+    </div>
+  );
 };
 
 export default App;
