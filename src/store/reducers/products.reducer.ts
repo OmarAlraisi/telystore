@@ -1,12 +1,12 @@
 import { handleActions } from "redux-actions";
-import ProductsState from "../types/productsState.type";
-import { fetchProducts } from "../actions/products.action";
+import { ProductsState } from "../types";
+import { fetchProducts } from "../actions";
 
 const initState: ProductsState = {
   items: [],
 };
 
-export default handleActions<ProductsState, any>(
+export const productsReducer = handleActions<ProductsState, any>(
   {
     [fetchProducts.toString()](
       state,

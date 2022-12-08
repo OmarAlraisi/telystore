@@ -1,6 +1,1 @@
-import getProductsService from "./getProducts.service";
-const Services = {
-  getProductsService,
-};
-
-export default Services;
+export * from "./getProducts.service";

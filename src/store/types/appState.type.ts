@@ -1,5 +1,5 @@
-import ProductsState from "./productsState.type";
-interface AppState {
+import { ProductsState, UserState } from "./";
+export interface AppState {
   products: ProductsState;
+  user: UserState;
 }
-export default AppState;

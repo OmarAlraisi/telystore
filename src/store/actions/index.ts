@@ -1,2 +1,2 @@
-const Actions = {};
-export default Actions;
+export * from "./products.actions";
+export * from "./user.actions";

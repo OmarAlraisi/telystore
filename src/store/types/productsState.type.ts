@@ -1,7 +1,5 @@
-import Product from "../../interfaces/product.interface";
+import { Product } from "../../interfaces";
 
-interface ProductsState {
+export interface ProductsState {
   items: Product[];
 }
-
-export default ProductsState;
