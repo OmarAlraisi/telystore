@@ -1,0 +1,24 @@
+.home--root {
+  height: 100%;
+  width: calc(100% - 30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #0c1d40;
+}
+
+.home--body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.home--products-container {
+  height: 100%;
+}
+
+.section {
+  background-color: #ffffff13;
+  width: 100%;
+}

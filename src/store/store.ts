@@ -1,18 +1,22 @@
-// import { identity } from "lodash";
-import { applyMiddleware } from "redux";
+// redux imports
+import { identity } from "lodash";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import { configureStore } from "@reduxjs/toolkit";
 
+// Reducers import
 import rootReducer from "./reducers";
 
-// let reactDevTools = identity;
-
-const devTools =
+// Create enhancers => To display app state on redux debugger
+let reactDevTool = identity;
+reactDevTool =
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENTION__();
+  window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  window.__REDUX_DEVTOOLS_EXTENSION__();
+const enhancers = [applyMiddleware(thunk), reactDevTool];
+const enhancer = compose(...enhancers);
 
-const store = configureStore({
-  reducer: rootReducer,
-  enhancers: [applyMiddleware(thunk), devTools],
-});
-export default store;
+// create a store
+export const store = createStore(rootReducer, {}, enhancer as any);

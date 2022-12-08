@@ -1,2 +1,1 @@
-const Quesries = {};
-export default Quesries;
+export * from "./products.queries";

@@ -1,0 +1,4 @@
+.products-grid--root {
+  height: 100%;
+  display: grid;
+}
