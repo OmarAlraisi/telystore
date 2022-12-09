@@ -9,6 +9,21 @@
   justify-content: center;
 }
 
+.login--input-field--required {
+  margin-bottom: 10px;
+}
+.warning {
+  color: red;
+  font-size: 12px;
+  text-align: left;
+}
+.hide {
+  opacity: 0;
+}
+.login--form--credentials {
+  margin-top: -10px;
+}
+
 .login--background {
   position: absolute;
   top: 0;

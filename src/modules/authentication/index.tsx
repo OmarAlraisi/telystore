@@ -1,6 +1,56 @@
 import "./index.css";
 import Image from "../common/image";
+import { useState } from "react";
+import { loginService } from "../../services";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../store/actions";
+import classNames from "classnames";
+
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isEmailBlank, setIsEmailBlank] = useState(false);
+  const [isPasswordBlank, setIsPasswordBlank] = useState(false);
+  const [incorrectCredentials, setIncorrectCredentials] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event: any) => {
+    if (email === "") {
+      setIsEmailBlank(true);
+      setIncorrectCredentials(false);
+    } else setIsEmailBlank(false);
+
+    if (password === "") {
+      setIsPasswordBlank(true);
+      setIncorrectCredentials(false);
+    } else setIsPasswordBlank(false);
+
+    if (email !== "" && password !== "") {
+      loginService(
+        email,
+        password,
+        () => {
+          dispatch(logIn(true));
+        },
+        () => {
+          setIncorrectCredentials(true);
+        },
+      );
+    }
+    event.preventDefault();
+  };
+
+  const handleInputChange = (event: any) => {
+    const { name, value } = event.target;
+    if (name === "email") {
+      setEmail(value);
+      if (email !== "") setIsEmailBlank(false);
+    } else {
+      setPassword(value);
+      if (password !== "") setIsPasswordBlank(false);
+    }
+  };
   return (
     <div className="login-root">
       <div className="login--background"></div>
@@ -12,7 +62,7 @@ const Login = () => {
         </div>
         <div className="login--card--right">
           <span className="login--card--text">Welcome to TelyStore</span>
-          <form onSubmit={() => {}} className="login--form">
+          <form onSubmit={handleSubmit} className="login--form">
             <div className="login--field">
               <label className="login--input-label" htmlFor="email">
                 Email Address
@@ -22,7 +72,16 @@ const Login = () => {
                 name="email"
                 className="login--input-field"
                 placeholder="email@example.com"
+                value={email}
+                onChange={handleInputChange}
               />
+              <span
+                className={classNames("login--input-field--required warning", {
+                  hide: !isEmailBlank,
+                })}
+              >
+                * Please enter your email
+              </span>
             </div>
             <div className="login--field">
               <label className="login--input-label" htmlFor="email">
@@ -30,11 +89,28 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 className="login--input-field"
                 placeholder="********"
+                value={password}
+                onChange={handleInputChange}
               />
+              <span
+                className={classNames("login--input-field--required warning", {
+                  hide: !isPasswordBlank,
+                })}
+              >
+                * Please enter your password
+              </span>
             </div>
             <input type="submit" value="Login" className="login--form-submit" />
+            <span
+              className={classNames("login--form--credentials warning", {
+                hide: !incorrectCredentials,
+              })}
+            >
+              Incorrect email or password
+            </span>
           </form>
         </div>
       </div>
