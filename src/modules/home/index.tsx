@@ -18,10 +18,8 @@ const Home = () => {
       {true ? (
         <div className="home--body">
           <Filter className="section" />
-          <div className="home--products-container">
-            <InfoCard className="section" />
-            <ProductsGrid className="section" />
-          </div>
+          <InfoCard className="section" />
+          <ProductsGrid className="section" />
         </div>
       ) : (
         <h1>Popup</h1>
