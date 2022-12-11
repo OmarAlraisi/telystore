@@ -1,10 +1,11 @@
 import "./index.css";
 import Image from "../common/image";
 import { useState } from "react";
-import { loginService } from "../../services";
+import { getProductsService, loginService } from "../../services";
 import { useDispatch } from "react-redux";
-import { logIn } from "../../store/actions";
+import { fetchProducts, logIn } from "../../store/actions";
 import classNames from "classnames";
+import { Product } from "../../interfaces";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,6 +33,9 @@ const Login = () => {
         password,
         () => {
           dispatch(logIn(true));
+          getProductsService((products: Product[]) => {
+            dispatch(fetchProducts(products));
+          });
         },
         () => {
           setIncorrectCredentials(true);

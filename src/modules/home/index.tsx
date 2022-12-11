@@ -2,10 +2,6 @@ import "./index.css";
 import InfoCard from "./infoCard";
 import Filter from "./filter";
 import ProductsGrid from "./productsGrid";
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "../../store/actions";
-import { getProductsService } from "../../services";
-import { Product } from "../../interfaces";
 import classNames from "classnames";
 
 interface HomeProps {
@@ -13,11 +9,6 @@ interface HomeProps {
 }
 
 const Home = ({ className }: HomeProps) => {
-  const dispatch = useDispatch();
-  getProductsService((products: Product[]) => {
-    dispatch(fetchProducts(products));
-  });
-
   return (
     <div className={classNames("home--root", className)}>
       {true ? (
