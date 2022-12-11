@@ -2,6 +2,7 @@ import "./productsGrid.css";
 import classnames from "classnames";
 import { useSelector } from "react-redux";
 import { getProducts } from "../../store/queries";
+import Image from "../common/image";
 
 interface ProductsGridProps {
   className?: string;
@@ -15,8 +16,24 @@ const ProductsGrid = ({ className }: ProductsGridProps) => {
       {products.map((product) => {
         return (
           <div className="product-card">
-            <span className="product-card--text title">{product.name}</span>
-            <div className="product-card--details">
+            {!product.isAvailable && (
+              <Image
+                fileName="unavailable.png"
+                className="unavailable--image"
+              />
+            )}
+            <span
+              className={classnames("product-card--text title", {
+                unavailable: !product.isAvailable,
+              })}
+            >
+              {product.name}
+            </span>
+            <div
+              className={classnames("product-card--details", {
+                unavailable: !product.isAvailable,
+              })}
+            >
               <span className="product-card--text">{`In Stock: ${product.noInStock}`}</span>
               <span className="product-card--text">{`Cost/Piece: $${product.price.toFixed(
                 2,
@@ -30,7 +47,11 @@ const ProductsGrid = ({ className }: ProductsGridProps) => {
                 <button className="controlls--btn delete">Delete</button>
                 <button className="controlls--btn edit">Edit</button>
               </div>
-              <span className="product-card--text identification">{`ID: ${product.id
+              <span
+                className={classnames("product-card--text identification", {
+                  unavailable: !product.isAvailable,
+                })}
+              >{`ID: ${product.id
                 .toPrecision(8)
                 .split(".")
                 .reverse()
