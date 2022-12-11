@@ -1,8 +1,9 @@
 import "./productsGrid.css";
 import classnames from "classnames";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/queries";
 import Image from "../common/image";
+import { deleteProduct } from "../../store/actions";
 
 interface ProductsGridProps {
   className?: string;
@@ -10,6 +11,12 @@ interface ProductsGridProps {
 
 const ProductsGrid = ({ className }: ProductsGridProps) => {
   const products = useSelector(getProducts);
+
+  const dispatch = useDispatch();
+  const handleDelete = (id: number) => {
+    dispatch(deleteProduct(id));
+  };
+  const handleEdit = (id: number) => {};
 
   return (
     <div className={classnames("products-grid--root", className)}>
@@ -45,8 +52,18 @@ const ProductsGrid = ({ className }: ProductsGridProps) => {
               </div>
               <div className="product-card--id-and-controlls">
                 <div className="product-card--controlls">
-                  <button className="controlls--btn delete">Delete</button>
-                  <button className="controlls--btn edit">Edit</button>
+                  <button
+                    className="controlls--btn delete"
+                    onClick={() => handleDelete(product.id)}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="controlls--btn edit"
+                    onClick={() => handleEdit(product.id)}
+                  >
+                    Edit
+                  </button>
                 </div>
                 <span
                   className={classnames("product-card--text identification", {
