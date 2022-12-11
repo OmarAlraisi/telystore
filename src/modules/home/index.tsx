@@ -3,6 +3,7 @@ import InfoCard from "./infoCard";
 import Filter from "./filter";
 import ProductsGrid from "./productsGrid";
 import classNames from "classnames";
+import EditPopup from "./editPopup";
 
 interface HomeProps {
   className?: string;
@@ -11,15 +12,13 @@ interface HomeProps {
 const Home = ({ className }: HomeProps) => {
   return (
     <div className={classNames("home--root", className)}>
-      {true ? (
-        <div className="home--body">
-          <Filter className="section" />
-          <InfoCard />
-          <ProductsGrid className="section" />
-        </div>
-      ) : (
-        <h1>Popup</h1>
-      )}
+      <div className="home--body">
+        <Filter className="section" />
+        <InfoCard />
+        <ProductsGrid className="section" />
+      </div>
+
+      {true && <EditPopup />}
     </div>
   );
 };

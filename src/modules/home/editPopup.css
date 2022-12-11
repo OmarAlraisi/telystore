@@ -1,0 +1,94 @@
+.edit-popup--root {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(140deg, #f96b2eb2, #2d3863b2);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.edit-popup--body {
+  position: absolute;
+  width: 850px;
+  height: 500px;
+  background-color: #4a5479;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.edit--field {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit--input-label {
+  text-align: left;
+  color: #f4f4f469;
+  font-size: 18px;
+  font-weight: 550;
+  margin-left: 1px;
+}
+
+.edit--input-field {
+  height: 30px;
+  width: 400px;
+  font-size: 14px;
+  border: 0px;
+  border-bottom: 1px solid #f4f4f4;
+  background-color: transparent;
+  color: #f4f4f4;
+}
+
+.edit--input-field:focus {
+  outline: none;
+}
+
+.edit--field--row {
+  display: flex;
+  width: 400px;
+  align-items: center;
+}
+
+.availability-checkbox {
+  margin-right: 5px;
+}
+
+.edit--controls {
+  width: 400px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit--form-submit {
+  height: 30px;
+  width: 105px;
+  border: 0;
+  border-radius: 15px;
+  /* background-color: #f96b2ed7; */
+  color: #f4f4f4;
+  font-size: 15px;
+  font-weight: 650;
+  margin-left: 5px;
+}
+
+.edit--form-submit.discard {
+  background-color: #f96b2ed7;
+}
+
+.edit--form-submit.save {
+  background-color: #2d3863;
+}
+
+.edit--form-submit:hover {
+  cursor: pointer;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.05),
+    0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
