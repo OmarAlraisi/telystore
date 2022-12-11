@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   padding: 15px;
-  background-image: linear-gradient(140deg, #f96b2e60, #2d3863c8);
+  background-color: #2d386316;
 }
 
 .home--body {
@@ -22,4 +22,9 @@
   width: 100%;
   box-sizing: border-box;
   border-radius: 5px;
+}
+
+.blur {
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
 }

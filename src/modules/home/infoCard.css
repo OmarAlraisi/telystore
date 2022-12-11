@@ -1,4 +1,8 @@
 .info-card--root {
   height: 200px;
   margin-bottom: 15px;
+  background-image: linear-gradient(140deg, #f96b2e26, #2d386326);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 10px;
 }

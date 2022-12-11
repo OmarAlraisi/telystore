@@ -6,19 +6,24 @@ import { useDispatch } from "react-redux";
 import { fetchProducts } from "../../store/actions";
 import { getProductsService } from "../../services";
 import { Product } from "../../interfaces";
+import classNames from "classnames";
 
-const Home = () => {
+interface HomeProps {
+  className?: string;
+}
+
+const Home = ({ className }: HomeProps) => {
   const dispatch = useDispatch();
   getProductsService((products: Product[]) => {
     dispatch(fetchProducts(products));
   });
 
   return (
-    <div className="home--root">
+    <div className={classNames("home--root", className)}>
       {true ? (
         <div className="home--body">
           <Filter className="section" />
-          <InfoCard className="section" />
+          <InfoCard />
           <ProductsGrid className="section" />
         </div>
       ) : (

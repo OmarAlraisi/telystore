@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Home />
+      <Home className={!isUserLoggedIn ? "blur" : ""} />
       {!isUserLoggedIn && <Login />}
     </div>
   );

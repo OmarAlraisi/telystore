@@ -14,12 +14,18 @@
   display: none;
 }
 
-.product {
+.product-card {
   min-height: 120px;
-  /* display: flex;
-  align-items: center; */
-  background-color: #2d386394;
+  background-image: linear-gradient(140deg, #f96b2e26, #2d386326);
   border-radius: 8px;
   box-sizing: border-box;
   padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card--id-and-controlls {
+  display: flex;
+  justify-content: space-between;
 }
