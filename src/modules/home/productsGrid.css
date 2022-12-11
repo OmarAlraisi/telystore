@@ -23,9 +23,64 @@
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card--text {
+  color: #2d3863;
+  text-align: left;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 650;
+  height: 45%;
+}
+
+.product-card--details {
+  display: flex;
+  justify-content: space-between;
 }
 
 .product-card--id-and-controlls {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
+}
+
+.product-card--controlls {
+  width: 155px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controlls--btn {
+  height: 28px;
+  width: 75px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.controlls--btn:hover {
+  cursor: pointer;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.08),
+    0 6px 20px 0 rgba(0, 0, 0, 0.08);
+}
+
+.delete {
+  background-color: #f96b2e;
+  color: #f4f4f4;
+}
+
+.edit {
+  background-color: #2d3863;
+  color: #f4f4f4;
+}
+
+.identification {
+  font-size: 12px;
+  margin-top: auto;
 }

@@ -12,25 +12,29 @@ const ProductsGrid = ({ className }: ProductsGridProps) => {
 
   return (
     <div className={classnames("products-grid--root", className)}>
-      {products.map((p) => {
+      {products.map((product) => {
         return (
           <div className="product-card">
-            <span className="product-card--text title">{p.name}</span>
+            <span className="product-card--text title">{product.name}</span>
             <div className="product-card--details">
-              <span className="product-card--text">{`In Stock: ${p.noInStock}`}</span>
-              <span className="product-card--text">{`Price/Unit: $${p.price.toFixed(
+              <span className="product-card--text">{`In Stock: ${product.noInStock}`}</span>
+              <span className="product-card--text">{`Cost/Piece: $${product.price.toFixed(
                 2,
               )}`}</span>
-              <span className="product-card--text">{`Total Price: $${(
-                p.price * p.noInStock
+              <span className="product-card--text">{`Total Cost: $${(
+                product.price * product.noInStock
               ).toFixed(2)}`}</span>
             </div>
             <div className="product-card--id-and-controlls">
-              <span className="product-card--text identification">{p.id}</span>
               <div className="product-card--controlls">
-                <button>Delete</button>
-                <button>Edit</button>
+                <button className="controlls--btn delete">Delete</button>
+                <button className="controlls--btn edit">Edit</button>
               </div>
+              <span className="product-card--text identification">{`ID: ${product.id
+                .toPrecision(8)
+                .split(".")
+                .reverse()
+                .join("")}`}</span>
             </div>
           </div>
         );
