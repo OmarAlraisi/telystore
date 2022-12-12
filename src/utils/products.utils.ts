@@ -54,6 +54,24 @@ export const getFilteredProducts = (
   products: Product[],
   filters: Filters,
 ): Product[] => {
-  const filteredProducts = [...products];
+  const filteredProducts: Product[] = [];
+  const { byName, byPrice, byAvailability } = filters;
+  const { min, max } = byPrice;
+  for (let product of products) {
+    if (byAvailability) {
+      if (!product.isAvailable) continue;
+    }
+
+    if (byName !== "") {
+      if (
+        !product.name.toLocaleLowerCase().includes(byName.toLocaleLowerCase())
+      )
+        continue;
+    }
+
+    if (product.price > max || product.price < min) continue;
+
+    filteredProducts.push(product);
+  }
   return filteredProducts;
 };
