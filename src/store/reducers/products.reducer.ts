@@ -57,7 +57,7 @@ export const productsReducer = handleActions<ProductsState, any>(
       const { productId } = payload;
       const items = state.items.filter((product) => product.id !== productId);
       const filteredItems = getFilteredProducts(items, state.filters);
-      const summary = generateSummary(items);
+      const summary = generateSummary(filteredItems);
       return {
         ...state,
         items,
@@ -72,7 +72,7 @@ export const productsReducer = handleActions<ProductsState, any>(
       const { id, productData } = payload;
       updateProductById(state.items, id, productData);
       const filteredItems = getFilteredProducts(state.items, state.filters);
-      const summary = generateSummary(state.items);
+      const summary = generateSummary(filteredItems);
       return {
         ...state,
         items: state.items,
@@ -85,12 +85,19 @@ export const productsReducer = handleActions<ProductsState, any>(
       { payload }: ReturnType<typeof editNameFilter>,
     ) {
       const { name } = payload;
-      return {
+      const newState = {
         ...state,
         filters: {
           ...state.filters,
           byName: name,
         },
+      };
+      const filteredItems = getFilteredProducts(state.items, newState.filters);
+      const summary = generateSummary(filteredItems);
+      return {
+        ...newState,
+        filteredItems,
+        summary,
       };
     },
     [editMinPriceFilter.toString()](
@@ -98,7 +105,7 @@ export const productsReducer = handleActions<ProductsState, any>(
       { payload }: ReturnType<typeof editMinPriceFilter>,
     ) {
       const { min } = payload;
-      return {
+      const newState = {
         ...state,
         filters: {
           ...state.filters,
@@ -108,13 +115,20 @@ export const productsReducer = handleActions<ProductsState, any>(
           },
         },
       };
+      const filteredItems = getFilteredProducts(state.items, newState.filters);
+      const summary = generateSummary(filteredItems);
+      return {
+        ...newState,
+        filteredItems,
+        summary,
+      };
     },
     [editMaxPriceFilter.toString()](
       state,
       { payload }: ReturnType<typeof editMaxPriceFilter>,
     ) {
       const { max } = payload;
-      return {
+      const newState = {
         ...state,
         filters: {
           ...state.filters,
@@ -124,18 +138,32 @@ export const productsReducer = handleActions<ProductsState, any>(
           },
         },
       };
+      const filteredItems = getFilteredProducts(state.items, newState.filters);
+      const summary = generateSummary(filteredItems);
+      return {
+        ...newState,
+        filteredItems,
+        summary,
+      };
     },
     [editAvailabilityFilter.toString()](
       state,
       { payload }: ReturnType<typeof editAvailabilityFilter>,
     ) {
       const { available } = payload;
-      return {
+      const newState = {
         ...state,
         filters: {
           ...state.filters,
           byAvailability: available,
         },
+      };
+      const filteredItems = getFilteredProducts(state.items, newState.filters);
+      const summary = generateSummary(filteredItems);
+      return {
+        ...newState,
+        filteredItems,
+        summary,
       };
     },
   },
