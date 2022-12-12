@@ -22,3 +22,14 @@ export const generateSummary = (items: Product[]): Summary => {
     average,
   };
 };
+
+export const getProductById = (
+  products: Product[],
+  id: number,
+): Product | void => {
+  for (let product of products) {
+    if (product.id === id) {
+      return product;
+    }
+  }
+};

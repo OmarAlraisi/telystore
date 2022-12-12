@@ -17,6 +17,7 @@ const Home = ({ className }: HomeProps) => {
 
   useMemo(() => {
     togglePopup();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editId]);
 
   return (
@@ -27,7 +28,7 @@ const Home = ({ className }: HomeProps) => {
         <ProductsGrid className="section" setEditId={setEditId} />
       </div>
 
-      {popupOpened && <EditPopup closePopup={togglePopup} />}
+      {popupOpened && <EditPopup id={editId} closePopup={togglePopup} />}
     </div>
   );
 };

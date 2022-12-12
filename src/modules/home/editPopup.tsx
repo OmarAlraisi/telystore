@@ -1,19 +1,22 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getProducts } from "../../store/queries";
+import { getProductById } from "../../utils/products.utils";
 import "./editPopup.css";
 
 interface EditPopupProps {
-  name: string;
-  price: number;
-  inStock: number;
-  available: boolean;
+  id: number;
   closePopup: () => void;
 }
 // const EditPopup = ({ name, price, inStock, available }: EditPopupProps) => {
-const EditPopup = ({ closePopup }: { closePopup: () => void }) => {
-  const [name, setName] = useState("Test");
-  const [price, setPrice] = useState(0);
-  const [stock, setStock] = useState(0);
-  const [available, setAvailable] = useState(true);
+const EditPopup = ({ id, closePopup }: EditPopupProps) => {
+  const products = useSelector(getProducts);
+  const product = getProductById(products, id);
+
+  const [name, setName] = useState(product!.name);
+  const [price, setPrice] = useState(product!.price);
+  const [stock, setStock] = useState(product!.noInStock);
+  const [available, setAvailable] = useState(product!.isAvailable);
 
   const handleChange = (event: any) => {
     const { name, value, validity } = event.target;
@@ -86,7 +89,7 @@ const EditPopup = ({ closePopup }: { closePopup: () => void }) => {
             id="check"
             className="availability-checkbox"
             onChange={handleChange}
-            checked={available}
+            checked={!available}
           />
           <label className="edit--input-label" htmlFor="check">
             Mark Unavailable
