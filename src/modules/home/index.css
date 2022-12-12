@@ -17,13 +17,6 @@
   overflow: hidden;
 }
 
-.section {
-  border: 2px solid #2d3863;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
-
 .blur {
   filter: blur(3px);
   -webkit-filter: blur(3px);

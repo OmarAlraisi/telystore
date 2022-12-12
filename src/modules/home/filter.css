@@ -1,4 +1,70 @@
 .filter--root {
   margin-bottom: 15px;
   height: 60px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(140deg, #f96b2e26, #2d386326);
+  color: #2d3863;
+  position: relative;
+}
+
+.filter--title {
+  position: absolute;
+  left: 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.filter--controls {
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter--text {
+  text-align: left;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.text-input {
+  font-size: 16px;
+  border: 0px;
+  border-bottom: 1px solid #2d3863;
+  background-color: transparent;
+  color: #2d3863;
+}
+
+.text-input:focus {
+  outline: none;
+}
+
+.filter--text-input {
+  height: 30px;
+  width: 200px;
+}
+
+.price-range--input {
+  height: 30px;
+  width: 50px;
+  margin-right: 5px;
+}
+
+.filter--item {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter--text.checkbox-label {
+  margin-left: 10px;
+  margin-right: 0;
 }

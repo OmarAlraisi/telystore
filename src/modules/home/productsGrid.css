@@ -1,5 +1,9 @@
 .products-grid--root {
   height: calc(100vh - 260px);
+  border: 2px solid #2d38639d;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .products-grid--body {

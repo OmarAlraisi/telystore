@@ -40,9 +40,9 @@ const Home = ({ className }: HomeProps) => {
   return (
     <div className={classNames("home--root", className)}>
       <div className="home--body">
-        <Filter className="section" />
+        <Filter />
         <InfoCard />
-        <ProductsGrid className="section" setEditId={setEditId} />
+        <ProductsGrid setEditId={setEditId} />
       </div>
 
       {popupOpened ? (
