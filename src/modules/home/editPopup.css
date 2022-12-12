@@ -14,8 +14,8 @@
 
 .edit-popup--body {
   position: absolute;
-  width: 850px;
-  height: 500px;
+  width: 750px;
+  height: 450px;
   background-color: #4a5479;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
@@ -75,7 +75,7 @@
   /* background-color: #f96b2ed7; */
   color: #f4f4f4;
   font-size: 15px;
-  font-weight: 650;
+  font-weight: 600;
   margin-left: 5px;
 }
 
