@@ -37,3 +37,9 @@
   font-size: 20px;
   font-weight: 600;
 }
+
+@media screen and (max-width: 769px) {
+  .info-card--root {
+    display: none;
+  }
+}

@@ -26,7 +26,9 @@ const Filter = ({ className }: FilterProps) => {
         dispatch(editNameFilter(value));
         break;
       case "min":
-        validity.valid && dispatch(editMinPriceFilter(Number(value)));
+        if (Number(value) === 0)
+          dispatch(editMinPriceFilter(Number.MIN_SAFE_INTEGER));
+        else validity.valid && dispatch(editMinPriceFilter(Number(value)));
         break;
       case "max":
         if (Number(value) === 0)
@@ -52,7 +54,7 @@ const Filter = ({ className }: FilterProps) => {
             type="text"
             name="name"
             className="filter--text-input text-input"
-            placeholder="product name..."
+            placeholder="product name"
             onChange={handleChange}
             value={byName}
           />
@@ -64,7 +66,7 @@ const Filter = ({ className }: FilterProps) => {
               type="text"
               name="min"
               className="price-range--input text-input"
-              placeholder="min.."
+              placeholder="min"
               pattern="[0-9]*"
               onChange={handleChange}
               value={min === Number.MIN_SAFE_INTEGER ? "" : min}
@@ -74,7 +76,7 @@ const Filter = ({ className }: FilterProps) => {
               type="text"
               name="max"
               className="price-range--input text-input"
-              placeholder="max.."
+              placeholder="max"
               pattern="[0-9]*"
               onChange={handleChange}
               value={max === Number.MAX_SAFE_INTEGER ? "" : max}
