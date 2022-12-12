@@ -12,6 +12,7 @@
 .login--input-field--required {
   margin-bottom: 10px;
 }
+
 .warning {
   color: red;
   font-size: 12px;
@@ -134,4 +135,19 @@
   cursor: pointer;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.05),
     0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+@media screen and (max-width: 769px) {
+  .login--card {
+    width: 100%;
+    height: 100%;
+  }
+
+  .login--card--left {
+    display: none;
+  }
+
+  .login--card--right {
+    width: 100%;
+  }
 }
