@@ -1,6 +1,5 @@
 import "./filter.css";
 import classnames from "classnames";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   editAvailabilityFilter,

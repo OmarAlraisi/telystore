@@ -25,9 +25,9 @@ const ProductsGrid = ({ className, setEditId }: ProductsGridProps) => {
   return (
     <div className={classnames("products-grid--root", className)}>
       <div className="products-grid--body">
-        {products.map((product) => {
+        {products.map((product, index) => {
           return (
-            <div className="product-card">
+            <div className="product-card" key={`product-${index}`}>
               {!product.isAvailable && (
                 <Image
                   fileName="unavailable.png"
