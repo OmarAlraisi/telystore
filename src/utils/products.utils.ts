@@ -1,4 +1,4 @@
-import { Product, Summary, UpdateData } from "../interfaces";
+import { Filters, Product, Summary, UpdateData } from "../interfaces";
 
 export const generateSummary = (items: Product[]): Summary => {
   const products = items.length;
@@ -48,4 +48,12 @@ export const getProductById = (
       return product;
     }
   }
+};
+
+export const getFilteredProducts = (
+  products: Product[],
+  filters: Filters,
+): Product[] => {
+  const filteredProducts = [...products];
+  return filteredProducts;
 };

@@ -1,5 +1,5 @@
 .products-grid--root {
-  height: calc(100vh - 260px);
+  height: calc(100vh - 280px);
   border: 2px solid #2d38639d;
   width: 100%;
   box-sizing: border-box;
@@ -7,7 +7,7 @@
 }
 
 .products-grid--body {
-  max-height: calc(100vh - 260px);
+  max-height: calc(100vh - 285px);
   overflow-y: scroll;
   display: grid;
   grid-template-columns: calc(50% - 5px) calc(50% - 5px);
@@ -52,8 +52,8 @@
 }
 
 .title {
-  font-size: 22px;
-  font-weight: 650;
+  font-size: 20px;
+  font-weight: 600;
   height: 45%;
 }
 
