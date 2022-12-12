@@ -4,19 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/queries";
 import Image from "../common/image";
 import { deleteProduct } from "../../store/actions";
+import { Dispatch, SetStateAction } from "react";
 
 interface ProductsGridProps {
   className?: string;
+  setEditId: Dispatch<SetStateAction<number>>;
 }
 
-const ProductsGrid = ({ className }: ProductsGridProps) => {
+const ProductsGrid = ({ className, setEditId }: ProductsGridProps) => {
   const products = useSelector(getProducts);
 
   const dispatch = useDispatch();
   const handleDelete = (id: number) => {
     dispatch(deleteProduct(id));
   };
-  const handleEdit = (id: number) => {};
+  const handleEdit = (id: number) => {
+    setEditId(id);
+  };
 
   return (
     <div className={classnames("products-grid--root", className)}>
