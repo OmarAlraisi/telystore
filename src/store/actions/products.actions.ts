@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-import { Product } from "../../interfaces";
+import { Product, UpdateData } from "../../interfaces";
 
 export const fetchProducts = createAction(
   "PRODUCTS_ACTIONS__FETCH_PRODUCTS",
@@ -9,4 +9,15 @@ export const fetchProducts = createAction(
 export const deleteProduct = createAction(
   "PRODUCTS_ACTIONS__DELETE_PRODUCT",
   (productId: number): { productId: number } => ({ productId }),
+);
+
+export const updateProduct = createAction(
+  "PRODUCTS_ACTIONS__UPDATE_PRODUCT",
+  (
+    id: number,
+    productData: UpdateData,
+  ): {
+    id: number;
+    productData: UpdateData;
+  } => ({ id, productData }),
 );

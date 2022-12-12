@@ -1,22 +1,25 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
+import { Product, UpdateData } from "../../interfaces";
 import { getProducts } from "../../store/queries";
 import { getProductById } from "../../utils/products.utils";
 import "./editPopup.css";
 
 interface EditPopupProps {
   id: number;
-  closePopup: () => void;
+  setEditId: Dispatch<SetStateAction<number>>;
+  handleDiscard: () => void;
+  handleSave: (id: number, updatedData: UpdateData) => void;
 }
 // const EditPopup = ({ name, price, inStock, available }: EditPopupProps) => {
-const EditPopup = ({ id, closePopup }: EditPopupProps) => {
+const EditPopup = ({ id, setEditId, handleSave }: EditPopupProps) => {
   const products = useSelector(getProducts);
-  const product = getProductById(products, id);
+  const product = getProductById(products, id) as Product;
 
-  const [name, setName] = useState(product!.name);
-  const [price, setPrice] = useState(product!.price);
-  const [stock, setStock] = useState(product!.noInStock);
-  const [available, setAvailable] = useState(product!.isAvailable);
+  const [name, setName] = useState(product.name);
+  const [price, setPrice] = useState(product.price);
+  const [stock, setStock] = useState(product.noInStock);
+  const [available, setAvailable] = useState(product.isAvailable);
 
   const handleChange = (event: any) => {
     const { name, value, validity } = event.target;
@@ -39,15 +42,9 @@ const EditPopup = ({ id, closePopup }: EditPopupProps) => {
     }
   };
 
-  const handleSubmit = () => {
-    // TODO
-  };
-  const handleDiscard = () => {
-    closePopup();
-  };
   return (
     <div className="edit-popup--root">
-      <form className="edit-popup--body" onSubmit={handleSubmit}>
+      <div className="edit-popup--body">
         <div className="edit--field">
           <label className="edit--input-label">Product Name</label>
           <input
@@ -96,16 +93,27 @@ const EditPopup = ({ id, closePopup }: EditPopupProps) => {
           </label>
         </div>
         <div className="edit--controls">
-          <button className="edit--form-submit discard" onClick={handleDiscard}>
+          <button
+            className="edit--form-submit discard"
+            onClick={() => setEditId(-1)}
+          >
             Discard
           </button>
-          <input
-            type="submit"
-            value="Save"
+          <button
             className="edit--form-submit save"
-          />
+            onClick={() => {
+              handleSave(id, {
+                name,
+                price,
+                inStock: stock,
+                isAvailable: available,
+              });
+            }}
+          >
+            Save
+          </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

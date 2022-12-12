@@ -1,7 +1,7 @@
 import { handleActions } from "redux-actions";
 import { ProductsState } from "../types";
-import { fetchProducts, deleteProduct } from "../actions";
-import { generateSummary } from "../../utils/products.utils";
+import { fetchProducts, deleteProduct, updateProduct } from "../actions";
+import { generateSummary, updateProductById } from "../../utils/products.utils";
 
 const initState: ProductsState = {
   items: [],
@@ -35,10 +35,22 @@ export const productsReducer = handleActions<ProductsState, any>(
       const { productId } = payload;
       const items = state.items.filter((product) => product.id !== productId);
       const summary = generateSummary(items);
-      console.log("printing");
       return {
         ...state,
         items,
+        summary,
+      };
+    },
+    [updateProduct.toString()](
+      state,
+      { payload }: ReturnType<typeof updateProduct>,
+    ) {
+      const { id, productData } = payload;
+      updateProductById(state.items, id, productData);
+      const summary = generateSummary(state.items);
+      return {
+        ...state,
+        items: state.items,
         summary,
       };
     },

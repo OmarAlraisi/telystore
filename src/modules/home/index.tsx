@@ -6,6 +6,9 @@ import classNames from "classnames";
 import EditPopup from "./editPopup";
 import { useToggle } from "../../hooks/useToggle.hook";
 import { useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateProduct } from "../../store/actions";
+import { UpdateData } from "../../interfaces";
 
 interface HomeProps {
   className?: string;
@@ -20,6 +23,20 @@ const Home = ({ className }: HomeProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editId]);
 
+  const dispatch = useDispatch();
+  const handlePopupSave = (id: number, updatedData: UpdateData) => {
+    const { name, price, inStock, isAvailable } = updatedData;
+    setEditId(-1);
+    dispatch(
+      updateProduct(id, {
+        name,
+        price,
+        inStock,
+        isAvailable,
+      }),
+    );
+  };
+
   return (
     <div className={classNames("home--root", className)}>
       <div className="home--body">
@@ -28,7 +45,14 @@ const Home = ({ className }: HomeProps) => {
         <ProductsGrid className="section" setEditId={setEditId} />
       </div>
 
-      {popupOpened && <EditPopup id={editId} closePopup={togglePopup} />}
+      {popupOpened ? (
+        <EditPopup
+          id={editId}
+          setEditId={setEditId}
+          handleSave={handlePopupSave}
+          handleDiscard={togglePopup}
+        />
+      ) : null}
     </div>
   );
 };
